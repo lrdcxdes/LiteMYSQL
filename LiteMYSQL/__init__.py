@@ -1,7 +1,7 @@
 # =============================================================================
 # Придумал и разработал - lordcodes (vk.com/rezy0, t.me/lord_codes)
 # Гитхаб - https://github.com/LORD-ME-CODE/LiteMYSQL
-# PypI - pypi.org/project/litemysql/
+# PypI - pypi.org/project/lite-mysql/
 # =============================================================================
 
 import pymysql
@@ -10,43 +10,43 @@ import aiomysql
 
 
 class lmysql():
-    def __init__(self, host='localhost', user='root', password='', db='', charset='utf8-general-ci'):
+    def __init__(self, host='localhost', user='root', password='', db='', port=3306):
         self.conn = pymysql.connect(
                             host=host,
                             user=user,
                             password=password,
                             db=db,
-                            charset=charset,
+                            port=port,
                             cursorclass=DictCursor
                     )
         self.cursor = self.conn.cursor()
 
-    async def create(self, names, table="albums"):
+    def create(self, names, table="albums"):
         self.cursor.execute(f"CREATE TABLE {table} ({names})")
         self.conn.commit()
     
-    async def insert_data(self, data_mass, table_rows, table="albums"): 
+    def insert_data(self, data_mass, table_rows, table="albums"): 
         len_title = r"%s,"*(len(table_rows.split(', '))-1) + r"%s"
         self.cursor.executemany(f"INSERT INTO {table} ({table_rows}) VALUES ({len_title})", data_mass)
         self.conn.commit()
         
-    async def edit_data(self, title_last, last, title_new, new, table="albums"):
+    def edit_data(self, title_last, last, title_new, new, table="albums"):
         self.cursor.execute(f"""UPDATE `{table}`
 SET {title_new} = %s WHERE {title_last} = %s""",
                             [new, last])
         self.conn.commit()
         
-    async def delete_data(self, name, title_name, table="albums"):
+    def delete_data(self, name, title_name, table="albums"):
         self.cursor.execute(f"DELETE FROM `{table}` WHERE {title_name} = %s", [name])
         
-    async def select_data(self, name, title, row_factor=False, table="albums"):
+    def select_data(self, name, title, row_factor=False, table="albums"):
         self.cursor.execute(f"SELECT * FROM {table} WHERE {title}=?", [name])
         if row_factor:
             return self.cursor.fetchone()
         else:
             return self.cursor.fetchall()
         
-    async def select_data_with_sort(self, type_sort, name, title_name, table="albums"):
+    def select_data_with_sort(self, type_sort, name, title_name, table="albums"):
         a = []
         if name != None:
             for row in self.cursor.execute(f"SELECT {type_sort}, * FROM `{table}` ORDER BY {title_name}", [name]):
@@ -57,18 +57,18 @@ SET {title_new} = %s WHERE {title_last} = %s""",
                 a.append(row)
             return a
         
-    async def search(self, type_search, name_search, table="albums"):
+    def search(self, type_search, name_search, table="albums"):
         self.cursor.execute(f"SELECT * FROM `{table}` WHERE {type_search} LIKE {name_search}")
         return self.cursor.fetchall()
     
-    async def get_all_data(self, table="albums"):
+    def get_all_data(self, table="albums"):
         self.cursor.execute(f"SELECT * FROM `{table}`")
         return self.cursor.fetchall()
     
-    async def get_cursor(self):
+    def get_cursor(self):
         return self.cursor
     
-    async def get_connect(self):
+    def get_connect(self):
         return self.conn
 
 
