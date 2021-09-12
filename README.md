@@ -120,9 +120,10 @@ print(a) #Результат - [{'id':1, 'name':'lord'}, {'id':2, 'name':'dima'}
 ```python
 from LMSQL import aiolmysql
 import asyncio
-sql = aiolmysql() #Соединяемся с БД
 
 async def main():
+    sql = aiolmysql() #Соединяемся с БД
+    await sql.connect() #Соединяемся с БД
     await sql.create('id, hash') #Создаем 2 столбца - id и hash
     await sql.insert_data((1, 'lord'), 'id, name') #Добавляем данные
     a = await sql.select_data(1, 'id') #Ищем строку, в которой id = '234'
