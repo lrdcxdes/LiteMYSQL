@@ -10,7 +10,7 @@ Pypi - https://pypi.org/project/Lite-MYSQL
 ## Импорты
 Рекомендуем использовать from Lite_MYSQL import lmysql или же from Lite_MYSQL import aiolmysql (они будут рассмотрены тут), но есть и другие варианты импорта.
 
-## _=lmysql(host='localhost', user='root', password='', db='', charset='utf8-general-ci', port=3306)
+## _=lmysql(host='localhost', user='root', password='', db='', charset='utf8-general-ci', port=3306, log=True)
 Соединяется с базой данных
 
 host = хост, на котором расположен сервер базы данных, по умолчанию: localhost
@@ -18,9 +18,10 @@ user = имя пользователя для входа в систему, по
 password = пароль для использования
 db = Название базы данных
 port = Порт, по умолчанию 3306
+log = Логгирование, по умолчанию True
 
 
-## _=aiolmysql(host='localhost', user='root', password='', db='', charset='utf8-general-ci', port=3306)
+## _=aiolmysql(host='localhost', user='root', password='', db='', charset='utf8-general-ci', port=3306, log=True)
 Соединяется с базой данных (async)
 
 host = хост, на котором расположен сервер базы данных, по умолчанию: localhost
@@ -28,6 +29,7 @@ user = имя пользователя для входа в систему, по
 password = пароль для использования
 db = Название базы данных
 port = Порт, по умолчанию 3306
+log = Логгирование, по умолчанию True
 
 ## _.create(names, table="albums")
 Создает столбцы таблицы
