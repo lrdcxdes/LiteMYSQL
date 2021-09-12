@@ -91,7 +91,7 @@ name_search | имя, которое мы ищем (в том числе с по
 
 # Примеры
 ```python
-from Lite_MYSQL import lmysql
+from LMSQL import lmysql
 sql = lmysql() #Соединяемся с БД 
 sql.create('id, hash') #Создаем 2 столбца - id и hash
 sql.insert_data((1, 'lord'), 'id, name') #Добавляем данные
@@ -109,7 +109,7 @@ print(a) #Результат - [{'id':1, 'name':'lord'}, {'id':2, 'name':'dima'}
 ```
 
 ```python
-from Lite_MYSQL import aiolmysql
+from LMSQL import aiolmysql
 import asyncio
 sql = aiolmysql() #Соединяемся с БД
 
