@@ -5,7 +5,7 @@
 Привет! Эта библиотека создана для простого и быстрого создания и редактирования базы данных формата MYSQL.
  Библиотека основана на pymysql, aiomysql
 
-Pypi - https://pypi.org/project/Lite-MYSQL
+Pypi - https://pypi.org/project/LMSQL
 
 ## Импорты
 Рекомендуем использовать from Lite_MYSQL import lmysql или же from Lite_MYSQL import aiolmysql (они будут рассмотрены тут), но есть и другие варианты импорта.
